@@ -7,5 +7,5 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/poscoict-glueframework/template-config.git
-          searchPath: '{application}'
+          uri: https://github.com/poscoict-glueframework/msa-service-config.git
+          search-paths: '{application}'
