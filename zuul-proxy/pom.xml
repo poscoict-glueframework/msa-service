@@ -8,8 +8,8 @@
 	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
-	<name>zuul-proxy</name>
-	<description>@EnableZuulProxy ( https://spring.io/projects/spring-cloud-netflix )</description>
+	<name>zuul proxy</name>
+	<description>@EnableZuulProxy ( https://spring.io/projects/spring-cloud-netflix, api gateway )</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
