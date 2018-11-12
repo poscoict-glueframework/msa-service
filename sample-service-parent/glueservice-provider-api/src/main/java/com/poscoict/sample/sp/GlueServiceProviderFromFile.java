@@ -79,17 +79,23 @@ public class GlueServiceProviderFromFile {
 			@ApiImplicitParam(name = "serviceName", value = "GlueService 명", required = true, dataType = "string", paramType = "path", defaultValue = "hello-service") })
 	@GetMapping(path = "{serviceName}")
 	public Service getGlueService(@PathVariable String serviceName) throws JAXBException, SAXException {
-		URL serviceXmlUrl = Thread.currentThread().getContextClassLoader()
-				.getResource(this.baseDir + File.separator + serviceName + ".xml");
+		String path = this.baseDir + File.separator + serviceName + ".xml";
+		URL serviceXmlUrl = Thread.currentThread().getContextClassLoader().getResource(path);
+		if (serviceXmlUrl == null) {
+			String convertPath = path.replaceAll("\\\\", "/");
+			serviceXmlUrl = Thread.currentThread().getContextClassLoader().getResource(convertPath);
+		}
+		this.logger.warn("{} {}", this.baseDir, serviceXmlUrl);
 		return GlueServiceParser.parseXml(serviceXmlUrl);
 	}
 
 	@PostConstruct
 	public void init() throws MalformedURLException {
 		this.logger.info("{}", this.baseDir);
-		if( "undefined".equals(this.baseDir) ) {
+		if ("undefined".equals(this.baseDir)) {
 			this.url = Thread.currentThread().getContextClassLoader().getResource("service");
-		}else {
+			this.baseDir = "service";
+		} else {
 			this.url = new File(this.baseDir).toURI().toURL();
 		}
 		this.logger.info("{} {}", this.url.getProtocol(), this.url.getPath());
