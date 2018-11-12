@@ -5,9 +5,6 @@
 	<artifactId>sample-service-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<modules>
-		<module>glueservice-provider-api</module>
-	</modules>
 	<build>
 		<plugins>
 			<plugin>
@@ -20,4 +17,15 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>default</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>glueservice-provider-api</module>
+			</modules>
+		</profile>
+	</profiles>
 </project>

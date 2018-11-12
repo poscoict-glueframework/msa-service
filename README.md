@@ -1,14 +1,27 @@
 
 ```bash
-git clone
+git clone https://github.com/poscoict-glueframework/msa-service.git
 ``` 
 
 ```bash
-mvn clean package                    # ÀüÃ¼ºôµå
+mvn clean package                    # ì „ì²´ë¹Œë“œ
 
-mvn clean package -Pconfig-server    # config-server ¸¸ ºôµå
-mvn clean package -Peureka-server    # eureka-server ¸¸ ºôµå 
-mvn clean package -Pzuul-proxy       # zull-proxy ¸¸ ºôµå
+mvn clean package -Pconfig-server    # config-server ë§Œ ë¹Œë“œ
+mvn clean package -Peureka-server    # eureka-server ë§Œ ë¹Œë“œ 
+mvn clean package -Pzuul-proxy       # zull-proxy ë§Œ ë¹Œë“œ
 
-mvn clean package -Psample-service-all  # ¿¹Á¦ service ÀüÃ¼ ºôµå
+mvn clean package -Psample-service-all  # ì˜ˆì œ service ì „ì²´ ë¹Œë“œ
+```
+
+```bash
+java -jar config-server/target/config-server-0.0.1.jar  # config-server ì‹¤í–‰
+
+java -jar eureka-server/target/eureka-server-0.0.1.jar  # eureka-server ì‹¤í–‰
+
+java -jar zuul-proxy/target/zuul-proxy-0.0.1.jar        # zuul-proxy ì‹¤í–‰(eureka ë¨¼ì € ì‹¤í–‰í• ê²ƒ)
+```
+
+```bash
+cd sample-service-parent/glueservice-provider-api
+java -jar target/config-server-0.0.1.jar                # glueservice-provider-api ì‹¤í–‰
 ```
