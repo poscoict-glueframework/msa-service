@@ -9,14 +9,10 @@ spring:
         git:
           uri: https://github.com/poscoict-glueframework/msa-service-config.git
           search-paths: '{application}'
-management:
-  endpoint: 
-    env.enabled: true
-  endpoints:
-    web.exposure.include: *
-encrypt:
+encrypt:          
+  failOnError: false
   keyStore:
-    location: /home/jinia/Desktop/jdk1.8.0_191/jre/lib/security/cacerts
+    location: classpath:server.jks
     password: changeit
     alias: poscoict
-    secret: yujin
+    secret: changeit
