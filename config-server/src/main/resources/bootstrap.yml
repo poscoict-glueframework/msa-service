@@ -9,6 +9,8 @@ spring:
         git:
           uri: https://github.com/poscoict-glueframework/msa-service-config.git
           search-paths: '{application}'
+        encrypt:
+          enabled: false
 encrypt:          
   failOnError: false
   keyStore:
