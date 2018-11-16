@@ -11,10 +11,12 @@ spring:
           search-paths: '{application}'
         encrypt:
           enabled: false
-encrypt:          
+encrypt:
+  key: yujin
   failOnError: false
-  keyStore:
-    location: classpath:server.jks
-    password: changeit
-    alias: poscoict
-    secret: changeit
+#encrypt:
+#  keyStore:
+#    location: classpath:server.jks
+#    password: changeit
+#    alias: poscoict
+#    secret: changeit
