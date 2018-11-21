@@ -22,16 +22,19 @@ public class DeptController {
 
 	@GetMapping
 	public List<Dept> getDeptList() {
+		System.out.println("GET /dept");
 		return this.deptList;
 	}
 
 	@PostMapping
 	public void addDept(@RequestBody Dept dept) {
+		System.out.println("POST /dept");
 		this.deptList.add(dept);
 	}
 
 	@PutMapping(path = "{deptno}")
 	public void updateDept(@PathVariable String deptno, @RequestBody Dept data) {
+		System.out.println("PUT /dept/{deptno}");
 		for (Dept dept : deptList) {
 			if (deptno.equals(dept.getDeptno())) {
 				dept.setDloc(data.getDloc());
@@ -42,6 +45,7 @@ public class DeptController {
 
 	@DeleteMapping(path = "{deptno}")
 	public void deleteDept(@PathVariable String deptno) {
+		System.out.println("DELETE /dept/{deptno}");
 		for (Dept dept : deptList) {
 			if (deptno.equals(dept.getDeptno())) {
 				deptList.remove(dept);
