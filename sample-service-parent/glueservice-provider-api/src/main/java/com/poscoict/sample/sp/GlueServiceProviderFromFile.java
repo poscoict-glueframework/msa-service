@@ -51,7 +51,7 @@ public class GlueServiceProviderFromFile {
 			File[] list = dir.isFile() ? new File[] { dir } : dir.listFiles();
 			for (File file : list) {
 				String fileName = file.getName();
-				serviceNames.add(fileName.substring(0, fileName.lastIndexOf(".")));
+				serviceNames.add(fileName.substring(0, fileName.lastIndexOf('.')));
 			}
 		} else if ("jar".equals(this.url.getProtocol())) {
 			String path = this.url.getPath();
@@ -60,12 +60,14 @@ public class GlueServiceProviderFromFile {
 			}
 			path = URLDecoder.decode(path, "UTF-8");
 			String filePath = path.substring(0, path.indexOf("!"));
-			Enumeration<JarEntry> jarEntryList = new JarFile(new File(filePath)).entries();
-			while (jarEntryList.hasMoreElements()) {
-				JarEntry jarEntry = (JarEntry) jarEntryList.nextElement();
-				String fileName = jarEntry.getName();
-				if (fileName.endsWith("-service.xml")) {
-					serviceNames.add(fileName.substring(fileName.lastIndexOf("/") + 1, fileName.lastIndexOf(".")));
+			try (JarFile jarFile = new JarFile(new File(filePath));) {
+				Enumeration<JarEntry> jarEntryList = jarFile.entries();
+				while (jarEntryList.hasMoreElements()) {
+					JarEntry jarEntry = (JarEntry) jarEntryList.nextElement();
+					String fileName = jarEntry.getName();
+					if (fileName.endsWith("-service.xml")) {
+						serviceNames.add(fileName.substring(fileName.lastIndexOf('/') + 1, fileName.lastIndexOf('.')));
+					}
 				}
 			}
 		} else {

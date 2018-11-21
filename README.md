@@ -23,5 +23,5 @@ java -jar zuul-proxy/target/zuul-proxy-0.0.1.jar        # zuul-proxy 실행(eure
 
 ```bash
 cd sample-service-parent/glueservice-provider-api
-java -jar target/config-server-0.0.1.jar                # glueservice-provider-api 실행
+java -jar target/glueservice-provider-api.jar           # glueservice-provider-api 실행
 ```
