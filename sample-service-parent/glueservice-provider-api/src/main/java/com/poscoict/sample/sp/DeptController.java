@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 
 @Api(value = "RestTemplate 테스트", description = "GlueRestClientAcivity 테스트용입니다.", tags = { "RestTemplate 테스트" })
-@RestController(value = "/dept")
+@RestController
+@RequestMapping(value = "/dept")
 public class DeptController {
 	private List<Dept> deptList = new ArrayList<>();
 
