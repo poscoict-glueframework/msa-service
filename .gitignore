@@ -1,3 +1,5 @@
+.idea/
+*.iml
 
 # Created by https://www.gitignore.io/api/java,node,maven,gradle,eclipse,intellij,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=java,node,maven,gradle,eclipse,intellij,visualstudiocode
