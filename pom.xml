@@ -5,18 +5,6 @@
 	<artifactId>msa-service-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>3.7.1</version>
-				<configuration>
-					<generateReports>false</generateReports>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 	<profiles>
 		<profile>
 			<id>default</id>
@@ -24,34 +12,9 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<modules>
-				<module>config-server</module>
-				<module>eureka-server</module>
-				<module>zuul-proxy</module>
-				<module>sample-service-parent</module>
-			</modules>
-		</profile>
-		<profile>
-			<id>config-server</id>
-			<modules>
-				<module>config-server</module>
-			</modules>
-		</profile>
-		<profile>
-			<id>eureka-server</id>
-			<modules>
-				<module>eureka-server</module>
-			</modules>
-		</profile>
-		<profile>
-			<id>zuul-proxy</id>
-			<modules>
-				<module>zuul-proxy</module>
-			</modules>
-		</profile>
-		<profile>
-			<id>sample-service-all</id>
-			<modules>
-				<module>sample-service-parent</module>
+				<module>apps</module>
+				<module>demos</module>
+				<module>services</module>
 			</modules>
 		</profile>
 	</profiles>

@@ -1,27 +1,56 @@
+# msa
+
+다음 순서로 생성( https://spring.io/guides/gs/multi-module/ 참고함 )
 
 ```bash
-git clone https://github.com/poscoict-glueframework/msa-service.git
-``` 
-
-```bash
-mvn clean package                    # 전체빌드
-
-mvn clean package -Pconfig-server    # config-server 만 빌드
-mvn clean package -Peureka-server    # eureka-server 만 빌드 
-mvn clean package -Pzuul-proxy       # zull-proxy 만 빌드
-
-mvn clean package -Psample-service-all  # 예제 service 전체 빌드
+$ cd /c/workspace       # workspace로 이동. 
+$ mkdir boot-samples    # boot-samples 생성
+$ cd boot-samples
+$ touch pom.xml
+$ mkdir apps     # apps 생성
+$ mkdir demos    # demos 생성
+$ mkdir services # services 생성
+$ 
+$ cd ~/Downloads   # spring initializr에서 생성할 프로젝트가 다운로드 되는곳으로 이동.
+$ unzip config-server.zip -d /c/workspace/boot-samples/services/
+$ unzip eureka-server.zip -d /c/workspace/boot-samples/services/
+$ unzip zuul-proxy.zip    -d /c/workspace/boot-samples/services/
+$
+$ unzip hello.zip         -d /c/workspace/boot-samples/demos/
+$ 
+$ cd /c/workspace/boot-samples/apps     # apps 로 이동
+$ cp -r /c/infra/GlueSDK/templateFolder/maven order    # order 생성
+$ cp -r /c/infra/GlueSDK/templateFolder/maven payment  # payment 생성
+$ cp -r /c/infra/GlueSDK/templateFolder/maven stock    # stock 생성
+$ cp -r /c/infra/GlueSDK/templateFolder/maven delivery # delivery 생성
 ```
 
-```bash
-java -jar config-server/target/config-server-0.0.1.jar  # config-server 실행
+|a     | ProjectMeta (groupId)| ProjectMeta (artifactId) | Dependencies          |
+|------|----------------------|--------------------------|-----------------------|
+|spring|com.poscoict.service  |config-server             |Actuator, Config Server|
+|spring|com.poscoict.service  |eureka-server             |Actuator, Eureka Server|
+|spring|com.poscoict.service  |zuul-proxy                |Actuator, Eureka Discovery, Zuul|
+|spring|com.poscoict.service  |all                       |Actuator, Config Server, Eureka Server, Eureka Discovery, Zuul|
+|spring|com.poscoict.demo     |hello                     |Actuator, Web, Devtools|
+|glue  |com.poscoict.app.biz  |order                     |Actuator, Web, JPA, Devtools, H2, Swagger|
+|glue  |com.poscoict.app.biz  |payment                   |Actuator, Web, JPA, Devtools, H2, Swagger|
+|glue  |com.poscoict.app.biz  |stock                     |Actuator, Web, JPA, Devtools, H2, Swagger|
+|glue  |com.poscoict.app.biz  |delivery                  |Actuator, Web, JPA, Devtools, H2, Swagger|
 
-java -jar eureka-server/target/eureka-server-0.0.1.jar  # eureka-server 실행
 
-java -jar zuul-proxy/target/zuul-proxy-0.0.1.jar        # zuul-proxy 실행(eureka 먼저 실행할것)
-```
-
-```bash
-cd sample-service-parent/glueservice-provider-api
-java -jar target/glueservice-provider-api.jar           # glueservice-provider-api 실행
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.poscoict.sample</groupId>
+    <artifactId>boot-samples</artifactId>
+    <version>0.1.0</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>apps</module>
+        <module>demos</module>
+        <module>services</module>
+    </modules>
+</project>
 ```
